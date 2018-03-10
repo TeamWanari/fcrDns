@@ -14,7 +14,7 @@ class DnsUtils {
                 return Promise.all([...hostNames.map(hostName => {
                     return resolve4(hostName)
                         .then(resolvedAddresses => {
-                            if(resolvedAddresses.every(address => address === ipAddress)) {
+                            if(resolvedAddresses.some(address => address === ipAddress)) {
                                 return Promise.resolve();
                             } else {
                                 return Promise.reject(new Error(`Resolved addresses ${resolvedAddresses} did not equal to the initial IP address ${ipAddress}`));

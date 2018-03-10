@@ -8,7 +8,7 @@ class DnsUtils {
         const resolve4 = Q.denodeify(dns.resolve4);
 
         return reverse(ipAddress).then(hostNames => {
-            if(!hostNames.every(hostName => hostName.endsWith(domainToMatch))) {
+            if(!hostNames.every(hostName => hostName.endsWith(domainToMatch)) || hostNames.length === 0) {
                 return Promise.reject(new Error(`Hostname ${hostNames} did not end with ${domainToMatch}.`))
             } else {
                 return Promise.all([...hostNames.map(hostName => {

@@ -1,22 +1,25 @@
-# fcrDns
+# fcrDnsPromise
 Forward-Confirmed Reverse DNS lookup implementation for node v6.11.1 (supported by Google Cloud Functions)
 
-Example use in an express app:
+## Installation
 
 ```
-const fcrDns = require('fcrDns');
+ $ npm i --save fcrdns-promise
+```
 
-app.post('/', (req, res) => {
-    const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    
-    return fcrDns.fcrDns('169.45.134.251', 'fitbit.com')
-        .then(resolved => {
-            console.log("responded 204");
-            res.sendStatus(204);
-        }).catch(err => {
-            console.log("Err: ", err);
-            res.sendStatus(404);
+Example use in an express app (locally):
+
+```
+const DnsUtils = require('fcrdns-promise')
+
+app.get('/test-fcr', (req, res) => {
+    const ip = req.ip;
+    console.log("IP: ", ip);
+    DnsUtils.fcrDns(ip, 'fitbit.com')
+        .then(() => res.sendStatus(200))
+        .catch((err) => {
+            console.error(err);
+            res.status(400).json(err);
         });
-
 });
 ```

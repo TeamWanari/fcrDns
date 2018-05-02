@@ -1,14 +1,14 @@
 {
-  "name": "fcrdns",
+  "name": "fcrdns-promise",
   "description": "Reverse DNS lookup with promises.",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "src/fcrDnsPromise.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --recursive --reporter spec"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Oltier/fcrDns"
+    "url": "https://github.com/TeamWanari/fcrDns"
   },
   "keywords": [
     "firebase",
